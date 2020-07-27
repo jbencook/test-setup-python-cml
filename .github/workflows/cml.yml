@@ -1,6 +1,7 @@
 name: test-setup-python
 env:
   AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
+  RUNNER_TOOL_CACHE: /opt/hostedtoolcache
 
 on: [push]
 
