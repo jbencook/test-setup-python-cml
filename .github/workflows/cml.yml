@@ -1,4 +1,6 @@
 name: test-setup-python
+env:
+  AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
 
 on: [push]
 
@@ -6,8 +8,6 @@ jobs:
   run:
     runs-on: [ubuntu-latest]
     container: docker://jbencook/cml:latest
-    env:
-      AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
 
     steps:
       - uses: actions/checkout@v2
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: 3.7
 
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
