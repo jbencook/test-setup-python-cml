@@ -6,13 +6,25 @@ jobs:
   run:
     runs-on: [ubuntu-latest]
     container: docker://jbencook/cml:latest
-    env:
-      AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
 
     steps:
-      - name: Environment
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        env:
+          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache      
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Display Python version
+        env:
+          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache            
+        run: python -c "import sys; print(sys.version)"
+
+      - name: Install dependencies
+        env:
+          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache            
         run: |
-          env
-          pwd
-          ls /
-          ls /opt/
+          python -m pip install --upgrade pip 
+          pip install sklearn
