@@ -6,9 +6,14 @@ jobs:
   run:
     runs-on: [ubuntu-latest]
     container: docker://dvcorg/cml:latest
+    env:
+      AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Create Python directory
+        run: mkdir $AGENT_TOOLSDIRECTORY
 
       - name: Set up Python
         uses: actions/setup-python@v2
