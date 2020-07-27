@@ -7,10 +7,12 @@ on: [push]
 jobs:
   run:
     runs-on: [self-hosted]
-    container: docker://jbencook/cml:latest
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Show environment
+        run: env
 
       - name: Set up Python
         uses: actions/setup-python@v2
