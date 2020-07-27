@@ -19,7 +19,12 @@ jobs:
 
       - name: Display Python version
         env:
-          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache            
+          pythonLocation: /opt/hostedtoolcache/Python/3.8.3/x64
+        run: python -c "import sys; print(sys.version)"
+
+      - name: Install dependencies
+        env:
+          pythonLocation: /opt/hostedtoolcache/Python/3.8.3/x64
         run: |
-          ls /opt/hostedtoolcache/
-          ls /__t/
+          python -m pip install --upgrade pip 
+          pip install sklearn
