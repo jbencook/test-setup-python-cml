@@ -5,6 +5,7 @@ on: [push]
 jobs:
   run:
     runs-on: [self-hosted]
+    container: docker://jbencook/dvc-cml:latest
     strategy:
       matrix:
         python-version: [3.6, 3.7, 3.8]
