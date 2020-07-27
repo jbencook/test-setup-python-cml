@@ -5,9 +5,7 @@ on: [push]
 jobs:
   run:
     runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml:latest
-    env:
-      AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
+    container: docker://jbencook/cml:latest
 
     steps:
       - uses: actions/checkout@v2
