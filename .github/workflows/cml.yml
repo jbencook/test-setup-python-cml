@@ -5,18 +5,15 @@ on: [push]
 jobs:
   run:
     runs-on: [self-hosted]
-    container: docker://jbencook/cml:latest
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7, 3.8]
+    container: docker://dvcorg/cml:latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.6
 
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
