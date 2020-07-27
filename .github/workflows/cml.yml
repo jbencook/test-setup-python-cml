@@ -12,7 +12,7 @@ jobs:
 
       - name: Set up Python
         env:
-          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache      
+          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
@@ -20,4 +20,7 @@ jobs:
       - name: Display Python version
         env:
           pythonLocation: /opt/hostedtoolcache/Python/3.8.3/x64
-        run: ls $pythonLocation
+        run: touch foobar.txt
+
+      - name: Is it there
+        run: ls
