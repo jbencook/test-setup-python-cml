@@ -1,13 +1,9 @@
 name: test-setup-python
-env:
-  AGENT_TOOLSDIRECTORY: /__t
-
-on: [push]
+on: push
 
 jobs:
-  run:
-    runs-on: [self-hosted]
-    container: docker://jbencook/cml:latest
+  setup:
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v2
@@ -16,7 +12,15 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
+  
+  run:
+    needs: setup
+    runs-on: self-hosted
+    container: docker://jbencook/cml:latest
+    env:
+      AGENT_TOOLSDIRECTORY: /__t
 
+    steps:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
 
