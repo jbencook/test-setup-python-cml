@@ -4,25 +4,23 @@ on: push
 jobs:
   setup:
     runs-on: self-hosted
+    container: docker://jbencook/cml:latest
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Link tools directory
+        run: |
+          ln -s /__t /opt/hostedtoolcache
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
   
-  run:
-    needs: setup
-    runs-on: self-hosted
-    container: docker://jbencook/cml:latest
-    env:
-      AGENT_TOOLSDIRECTORY: /__t
-
-    steps:
       - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+        run: |
+          python -c "import sys; print(sys.version)"
 
       - name: Install dependencies
         run: |
