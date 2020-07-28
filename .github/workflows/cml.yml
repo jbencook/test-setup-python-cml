@@ -5,10 +5,6 @@ on: [push]
 jobs:
   run:
     runs-on: [self-hosted]
-    container:
-      image: docker://dvcorg/cml:latest
-      volumes:
-        - /opt/hostedtoolcache:/opt/hostedtoolcache
 
     steps:
       - uses: actions/checkout@v2
