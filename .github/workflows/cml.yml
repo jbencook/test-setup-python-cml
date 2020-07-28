@@ -4,6 +4,9 @@ on: push
 jobs:
   setup:
     runs-on: self-hosted
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]    
     container:
       image: docker://dvcorg/cml:latest
       volumes:
@@ -12,11 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7
-  
+          python-version: ${{ matrix.python-version }}
+
       - name: Display Python version
         run: |
           python -c "import sys; print(sys.version)"
