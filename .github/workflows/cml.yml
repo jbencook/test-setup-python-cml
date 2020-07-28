@@ -9,9 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Link tools directory
-        run: |
-          ln -s /__t /opt/hostedtoolcache
+      # - name: Link tools directory
+      #   run: |
+      #     ln -s /__t /opt/hostedtoolcache
 
       - name: Set up Python
         uses: actions/setup-python@v2
