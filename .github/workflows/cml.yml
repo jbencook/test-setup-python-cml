@@ -1,12 +1,10 @@
 name: test-setup-python
-on: push
+
+on: [push]
 
 jobs:
-  setup:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7, 3.8]    
+  run:
+    runs-on: [ubuntu-latest]
     container:
       image: docker://dvcorg/cml:latest
       volumes:
@@ -14,16 +12,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v1
         with:
-          python-version: ${{ matrix.python-version }}
-
+          python-version: '3.x'
+          
       - name: Display Python version
-        run: |
-          python -c "import sys; print(sys.version)"
-
+        run: python -c "import sys; print(sys.version)"
+      
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip 
