@@ -4,15 +4,15 @@ on: push
 jobs:
   setup:
     runs-on: self-hosted
-    container: docker://jbencook/cml:latest
+    container:
+      image: docker://jbencook/cml:latest
+      volumes:
+        - /opt/hostedtoolcache:/opt/hostedtoolcache
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Set up Python
-        env:
-          AGENT_TOOLSDIRECTORY: ''
-          RUNNER_TOOL_CACHE: /opt/hostedtoolcache
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
