@@ -5,7 +5,7 @@ jobs:
   setup:
     runs-on: self-hosted
     container:
-      image: docker://jbencook/cml:latest
+      image: docker://dvcorg/cml:latest
       volumes:
         - /opt/hostedtoolcache:/opt/hostedtoolcache
 
