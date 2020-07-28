@@ -9,10 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: Link tools directory
-      #   run: |
-      #     ln -s /__t /opt/hostedtoolcache
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -20,7 +16,8 @@ jobs:
   
       - name: Display Python version
         run: |
-          /__t/Python/3.7.8/x64/bin/python -c "import sys; print(sys.version)"
+          ln -s /__t /opt/hostedtoolcache
+          /opt/hostedtoolcache/Python/3.7.8/x64/bin/python -c "import sys; print(sys.version)"
 
       - name: Install dependencies
         run: |
