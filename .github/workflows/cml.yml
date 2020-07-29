@@ -5,7 +5,6 @@ on: [push]
 jobs:
   run:
     runs-on: self-hosted
-    container: docker://davidgortega/cml:pyv10
     strategy:
       matrix:
         python-version: [3.6, 3.7, 3.8]
