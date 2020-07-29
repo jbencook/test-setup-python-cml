@@ -5,6 +5,7 @@ on: [push]
 jobs:
   run:
     runs-on: [self-hosted]
+    container: docker://davidgortega/cml:pyv10
 
     steps:
       - uses: actions/checkout@v2
