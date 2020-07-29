@@ -4,8 +4,11 @@ on: [push]
 
 jobs:
   run:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
     container: docker://davidgortega/cml:pyv10
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
 
     steps:
       - uses: actions/checkout@v2
@@ -13,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: ${{ matrix.python-version }}
           
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
